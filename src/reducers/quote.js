@@ -2,6 +2,7 @@ const initialState = {
     num: 0,
     data: null,
     error: "",
+    symbol: "",
 };
 
 const reducer = (state = initialState, action) => {
@@ -12,6 +13,8 @@ const reducer = (state = initialState, action) => {
             return {...state, data: action.data};
         case "ERROR":
             return {...state, error: action.error};
+        case "SELECT_SYMBOL":
+            return {...state, symbol: action.symbol};
         default:
             return state;
     }
