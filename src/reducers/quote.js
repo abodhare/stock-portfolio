@@ -1,6 +1,5 @@
 const initialState = {
-    num: 0,
-    data: null,
+    symbols: null,
     error: "",
     symbol: "",
     quote: {},
@@ -9,10 +8,8 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case "INCREMENT":
-            return {...state, num: state.num + 1};
-        case "FetchData":
-            return {...state, data: action.data};
+        case "FetchSymbols":
+            return {...state, symbols: action.symbols};
         case "ERROR":
             return {...state, error: action.error};
         case "SELECT_SYMBOL":
