@@ -1,11 +1,5 @@
 let url = 'https://cloud.iexapis.com/stable';
 
-export const increment = () => {
-    return {
-        type: "INCREMENT",
-    };
-};
-
 export const fetchSymbols = () => {
     return (dispatch) => {
         console.log('ss');
@@ -13,8 +7,8 @@ export const fetchSymbols = () => {
             .then(response => response.json())
             .then(json => dispatch(
                 {
-                    type: "FetchData",
-                    data: json.map(x => x.symbol),
+                    type: "FetchSymbols",
+                    symbols: json.map(x => x.symbol),
                 }
             )).catch(error => dispatch(
                 {

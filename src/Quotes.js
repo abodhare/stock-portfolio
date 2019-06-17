@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { connect } from 'react-redux';
-import { increment, fetchSymbols, selectSymbol, fetchQuote, fetchTimeSeries } from './actions';
+import { fetchSymbols, selectSymbol, fetchQuote, fetchTimeSeries } from './actions';
 
 import CanvasJSReact from './canvasjs.react';
 
 // for better readablility
-var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class Quotes extends Component {
@@ -22,8 +21,8 @@ class Quotes extends Component {
 
   render() { 
     let symbols = [];
-    if (this.props.data) {
-      symbols = [...this.props.data].map(x => <option key={x} value={x}>{x}</option>);
+    if (this.props.symbols) {
+      symbols = [...this.props.symbols].map(x => <option key={x} value={x}>{x}</option>);
     }
 
     const options = {
@@ -44,9 +43,10 @@ class Quotes extends Component {
     }
     return (
       <div className="container">
-        <p>{this.props.num}</p>
-        <button className="btn btn-primary" onClick={this.props.onIncrement}>Increment</button>
-
+        <form>
+          <label for="checkStock">Select a stock ticker</label>
+          <select id="checkStock" className="form-control" onChange={e => this.handleSelectSymbol(e)}>{symbols}</select>
+        </form>
         {this.props.error && <p>{this.props.error}</p>}
 
         {this.props.quote.symbol && <ul>
@@ -60,8 +60,6 @@ class Quotes extends Component {
         {this.props.timeSeries[0] && <div>
             <CanvasJSChart options = {options} /> 
         </div>}
-
-        <select className="form-control" onChange={e => this.handleSelectSymbol(e)}>{symbols}</select>
       </div>
     );
   }
@@ -69,8 +67,7 @@ class Quotes extends Component {
 
 const mapStatetoProps = (state) => {
   return { 
-        num: state.num,
-        data: state.data,
+        symbols: state.symbols,
         error: state.error,
         symbol: state.symbol,
         quote: state.quote,
@@ -80,7 +77,6 @@ const mapStatetoProps = (state) => {
 
 const mapDispatchtoProps = (dispatch) => {
   return {
-    onIncrement: () => dispatch(increment()),
     onFetchSymbols: () => dispatch(fetchSymbols()),
     selectSymbol: (symbol) => dispatch(selectSymbol(symbol)),
     onFetchQuote: (symbol) => dispatch(fetchQuote(symbol)),
