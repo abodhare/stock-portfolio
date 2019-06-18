@@ -44,7 +44,7 @@ class Quotes extends Component {
     return (
       <div className="container">
         <form>
-          <label for="checkStock">Select a stock ticker</label>
+          <label htmlFor="checkStock">Select a stock ticker</label>
           <select id="checkStock" className="form-control" onChange={e => this.handleSelectSymbol(e)}>{symbols}</select>
         </form>
         {this.props.error && <p>{this.props.error}</p>}
@@ -72,6 +72,7 @@ const mapStatetoProps = (state) => {
         symbol: state.symbol,
         quote: state.quote,
         timeSeries: state.timeSeries,
+        transactions: state.transactions,
     };
 };
 

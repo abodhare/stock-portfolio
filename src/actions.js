@@ -64,3 +64,11 @@ export const fetchTimeSeries = (symbol) => {
             ));
     };
 };
+
+export const addTransaction = (symbol, numShares) => {
+    return {
+        type: "ADD_TRANSACTION",
+        symbol,
+        numShares,
+    };
+};

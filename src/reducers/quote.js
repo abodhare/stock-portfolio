@@ -4,6 +4,7 @@ const initialState = {
     symbol: "",
     quote: {},
     timeSeries: [],
+    transactions: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -18,6 +19,13 @@ const reducer = (state = initialState, action) => {
             return {...state, quote: action.data};
         case "FetchTimeSeries":
             return {...state, timeSeries: action.data};
+        case "ADD_TRANSACTION":
+            return {...state,
+                transactions: state.transactions.concat({
+                    symbol: action.symbol,
+                    numShares: action.numShares,
+                }
+            )};
         default:
             return state;
     }
