@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import Quotes from './Quotes';
 import Navbar from './Navbar';
+import Portfolio from './Portfolio';
 
 class App extends Component {
   render() { 
@@ -9,6 +10,7 @@ class App extends Component {
     <div>
       <Navbar />
       <Quotes />
+      <Portfolio />
     </div>
    );
   }

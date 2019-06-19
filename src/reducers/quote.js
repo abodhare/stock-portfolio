@@ -20,12 +20,24 @@ const reducer = (state = initialState, action) => {
         case "FetchTimeSeries":
             return {...state, timeSeries: action.data};
         case "ADD_TRANSACTION":
-            return {...state,
-                transactions: state.transactions.concat({
-                    symbol: action.symbol,
-                    numShares: action.numShares,
-                }
-            )};
+            let found = false;
+            let transactions = state.transactions.map(x => {
+                if (x.symbol === action.symbol) {
+                    found = true;
+                    return ({
+                        symbol: action.symbol,
+                        numShares: x.numShares + parseFloat(action.numShares),
+                })} else {
+                    return ({
+                        symbol: x.symbol,
+                        numShares: x.numShares,
+                })};
+            });
+            if (found) return {...state, transactions: transactions};
+            else return {...state, transactions: transactions.concat({
+                symbol: action.symbol,
+                numShares: parseFloat(action.numShares),
+            })};
         default:
             return state;
     }
