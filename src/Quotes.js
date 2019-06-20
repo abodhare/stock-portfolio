@@ -47,7 +47,6 @@ class Quotes extends Component {
           <label htmlFor="checkStock">Select a stock ticker</label>
           <select id="checkStock" className="form-control" onChange={e => this.handleSelectSymbol(e)}>{symbols}</select>
         </form>
-        {this.props.error && <p>{this.props.error}</p>}
 
         {this.props.quote.symbol && <ul>
             <li>Symbol: {this.props.quote.symbol}</li>
