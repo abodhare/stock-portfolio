@@ -46,7 +46,7 @@ export const fetchQuote = (symbol) => {
 
 export const fetchTimeSeries = (symbol) => {
     return function(dispatch) {
-        return fetch(`${url}/stock/${symbol.toLowerCase()}/chart?token=${process.env.REACT_APP_MY_TOKEN}`)
+        return fetch(`${url}/stock/${encodeURIComponent(symbol.toLowerCase())}/chart?token=${process.env.REACT_APP_MY_TOKEN}`)
             .then(response => response.json())
             .then(json => dispatch(
                 {
@@ -70,5 +70,24 @@ export const addTransaction = (symbol, numShares) => {
         type: "ADD_TRANSACTION",
         symbol,
         numShares,
+    };
+};
+
+export const updatePortfolio = (transactions) => {
+    return function(dispatch) {
+        return fetch(`${url}/stock/market/batch?symbols=${transactions.slice(1).reduce((acc, curr) => 
+            acc + "," + encodeURIComponent(curr.symbol), transactions[0].symbol)}&types=quote&token=${process.env.REACT_APP_MY_TOKEN}`)
+            .then(response => response.json())
+            .then(json => dispatch(
+                {
+                    type: "UPDATE_PORTFOLIO",
+                    data: json,
+                }
+            )).catch(error => dispatch(
+                {
+                    type: "ERROR",
+                    error: "Unable to update portfolio",
+                }
+            ));
     };
 };

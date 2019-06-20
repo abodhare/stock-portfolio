@@ -1,10 +1,11 @@
 const initialState = {
-    symbols: null,
+    symbols: [],
     error: "",
     symbol: "",
     quote: {},
     timeSeries: [],
     transactions: [],
+    portfolio: {},
 };
 
 const reducer = (state = initialState, action) => {
@@ -38,6 +39,8 @@ const reducer = (state = initialState, action) => {
                 symbol: action.symbol,
                 numShares: parseFloat(action.numShares),
             })};
+        case "UPDATE_PORTFOLIO":
+            return {...state, portfolio: action.data};
         default:
             return state;
     }
