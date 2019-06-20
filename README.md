@@ -19,6 +19,11 @@ npm install
 npm install -g serve
 serve -s build
 ```
+In order for the site to work, you mush have a valid IEX cloud API token. Include it in you `env.local` file in the main directory by adding
+```
+REACT_APP_MY_TOKEN=YOUR_TOKEN_HERE
+```
+to it.
 
 you can check out the application at `localhost:5000`.
 
