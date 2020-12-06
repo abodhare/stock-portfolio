@@ -19,13 +19,25 @@ npm install
 npm install -g serve
 serve -s build
 ```
-In order for the site to work, you mush have a valid IEX cloud API token. Include it in you `env.local` file in the main directory by adding
+In order for the site to work, you must have a valid IEX cloud API token. Include it in you `env.local` file in the main directory by adding
 ```
 REACT_APP_MY_TOKEN=YOUR_TOKEN_HERE
 ```
 to it.
 
 you can check out the application at `localhost:5000`.
+
+*OR*
+
+You can use the project in the following way:
+
+```bash
+# Build the image
+docker build -t stock-portfolio .
+
+# Run the image
+docker run -dp 8888:3000 stock-portfolio
+```
 
 ## Deployment
 
