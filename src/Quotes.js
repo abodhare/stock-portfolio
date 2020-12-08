@@ -41,10 +41,16 @@ class Quotes extends Component {
             dataPoints: this.props.timeSeries,
         }],
     }
+
+    const textStyle = {
+      paddingTop: 10,
+      fontSize: 20
+    }
+
     return (
       <div className="container">
         <form>
-          <label htmlFor="checkStock">Select a stock ticker</label>
+          <label htmlFor="checkStock" style={textStyle}>Select a stock ticker</label>
           <select id="checkStock" className="form-control" onChange={e => this.handleSelectSymbol(e)}>{symbols}</select>
         </form>
 

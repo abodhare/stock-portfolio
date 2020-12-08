@@ -36,7 +36,7 @@ You can use the project in the following way:
 docker build -t stock-portfolio .
 
 # Run the image
-docker run -dp 8888:3000 stock-portfolio
+docker run -itdp 8888:3000 -v ${PWD}:/app -v /app/node_modules -e CHOKIDAR_USEPOLLING=true --rm stock-portfolio
 ```
 
 ## Deployment
