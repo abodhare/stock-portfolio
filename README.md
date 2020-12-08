@@ -39,6 +39,15 @@ docker build -t stock-portfolio .
 docker run -itdp 8888:3000 -v ${PWD}:/app -v /app/node_modules -e CHOKIDAR_USEPOLLING=true --rm stock-portfolio
 ```
 
+*OR*
+
+You can use docker-compose if you have it:
+
+```bash
+# Bring up the application
+docker-compose up -d
+```
+
 ## Deployment
 
 You can make any necessary changes and deploy it to your preferred platform by following the guides on [Create React App](https://github.com/facebook/create-react-app).
